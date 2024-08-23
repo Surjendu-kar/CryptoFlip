@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Box, Typography } from "@mui/material";
 import MetaMaskConnector from "./components/MetaMaskConnector";
 import WalletInfo from "./components/WalletInfo";
 
@@ -14,16 +15,24 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Connect to MetaMask</h1>
-        <MetaMaskConnector
-          onConnect={handleConnect}
-          onDisconnect={handleDisconnect}
-        />
-        {walletAddress && <WalletInfo address={walletAddress} />}
-      </header>
-    </div>
+    <Box
+      sx={{
+        height: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <Typography component="h1" variant="h4" gutterBottom>
+        Connect to MetaMask
+      </Typography>
+      <MetaMaskConnector
+        onConnect={handleConnect}
+        onDisconnect={handleDisconnect}
+      />
+      {walletAddress && <WalletInfo address={walletAddress} />}
+    </Box>
   );
 };
 

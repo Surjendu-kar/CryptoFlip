@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { ethers } from "ethers";
+import { Typography, Box, CircularProgress } from "@mui/material";
 
 interface WalletInfoProps {
   address: string;
 }
 
 const WalletInfo: React.FC<WalletInfoProps> = ({ address }) => {
-  const [balance, setBalance] = useState<string>("");
+  const [balance, setBalance] = useState<string | null>(null);
 
   useEffect(() => {
     const getBalance = async () => {
@@ -24,10 +25,16 @@ const WalletInfo: React.FC<WalletInfoProps> = ({ address }) => {
   }, [address]);
 
   return (
-    <div>
-      <p>Address: {address}</p>
-      {balance && <p>Balance: {balance} ETH</p>}
-    </div>
+    <Box sx={{ mt: 2, textAlign: "center" }}>
+      <Typography variant="body1" gutterBottom>
+        Address: {address}
+      </Typography>
+      {balance === null ? (
+        <CircularProgress size={24} />
+      ) : (
+        <Typography variant="body1">Balance: {balance} ETH</Typography>
+      )}
+    </Box>
   );
 };
 

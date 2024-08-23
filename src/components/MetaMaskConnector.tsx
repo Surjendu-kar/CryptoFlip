@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Button, Typography, Box } from "@mui/material";
 
 interface EthereumProvider {
   isMetaMask?: boolean;
@@ -62,14 +63,27 @@ const MetaMaskConnector: React.FC<MetaMaskConnectorProps> = ({
   }, []);
 
   return (
-    <div>
-      <button onClick={connectWalletHandler} disabled={!metamaskAvailable}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
+      <Button
+        variant="contained"
+        color={isConnected ? "secondary" : "primary"}
+        onClick={connectWalletHandler}
+        disabled={!metamaskAvailable}
+      >
         {isConnected ? "Disconnect Wallet" : "Connect Wallet"}
-      </button>
+      </Button>
       {!metamaskAvailable && (
-        <p>Please install or unlock MetaMask to continue.</p>
+        <Typography variant="body2" color="error">
+          Please install or unlock MetaMask to continue.
+        </Typography>
       )}
-    </div>
+    </Box>
   );
 };
 
