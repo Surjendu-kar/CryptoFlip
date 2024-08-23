@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import MetaMaskConnector from "./MetaMaskConnector";
 
 const App: React.FC = () => {
   const [walletAddress, setWalletAddress] = useState<string>("");
@@ -15,6 +16,10 @@ const App: React.FC = () => {
     <div className="App">
       <header className="App-header">
         <h1>Connect to MetaMask</h1>
+        <MetaMaskConnector
+          onConnect={handleConnect}
+          onDisconnect={handleDisconnect}
+        />
       </header>
     </div>
   );
