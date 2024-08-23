@@ -78,7 +78,7 @@ const MetaMaskConnector: React.FC<MetaMaskConnectorProps> = ({
       >
         {isConnected ? "Disconnect Wallet" : "Connect Wallet"}
       </Button>
-      {metamaskAvailable && (
+      {!metamaskAvailable && (
         <Typography variant="body2" color="error" sx={{ mt: 1 }}>
           Please install or unlock MetaMask to continue.
         </Typography>
