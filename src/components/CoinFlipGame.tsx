@@ -44,13 +44,6 @@ const StyledButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-const WinMessage = styled(Typography)(({ theme }) => ({
-  fontSize: "1.25rem", // larger font size
-  fontWeight: "bold", // make it bold
-  color: "green", // green color to signify winning
-  marginTop: theme.spacing(2),
-}));
-
 interface CoinFlipGameProps {
   address: string;
 }
