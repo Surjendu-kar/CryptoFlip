@@ -1,6 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import { Typography, Box, CircularProgress } from "@mui/material";
+import { styled } from "@mui/system";
+
+const MainContainer = styled(Box)(({ theme }) => ({
+  marginTop: "2rem",
+  textAlign: "center",
+  [theme.breakpoints.down("sm")]: { marginTop: "1rem" },
+}));
+const Text = styled(Typography)(({ theme }) => ({
+  fontSize: "1rem",
+  fontWeight: "bold",
+  [theme.breakpoints.down("sm")]: {
+    fontSize: "0.7rem",
+  },
+}));
 
 interface WalletInfoProps {
   address: string;
@@ -25,16 +39,16 @@ const WalletInfo: React.FC<WalletInfoProps> = ({ address }) => {
   }, [address]);
 
   return (
-    <Box sx={{ mt: 2, textAlign: "center" }}>
-      <Typography variant="body1" gutterBottom>
+    <MainContainer>
+      <Text variant="body1" gutterBottom>
         Address: {address}
-      </Typography>
+      </Text>
       {balance === null ? (
         <CircularProgress size={24} />
       ) : (
-        <Typography variant="body1">Balance: {balance} ETH</Typography>
+        <Text variant="body1">Balance: {balance} ETH</Text>
       )}
-    </Box>
+    </MainContainer>
   );
 };
 
