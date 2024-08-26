@@ -1,50 +1,41 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# CryptoFlip
 
-Currently, two official plugins are available:
+## Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project showcases a blockchain-based coinflip game where users can connect their cryptocurrency wallets, bet tokens, and potentially double their stake based on the outcome of a coin toss. The application is designed to interact with different blockchains, providing a user-friendly experience to engage with decentralized technologies without extensive prior knowledge.
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- #### Blockchain Integration: 
+Users can connect their wallets via the Ethereum testnet environment.
+- #### Gameplay Mechanics: 
+After connecting their wallet, users can choose the amount of Ethereum tokens (ETH) to bet and select either heads or tails for the coinflip.
 
-- Configure the top-level `parserOptions` property like this:
+- #### Winnings Calculation: 
+If the coin lands on the user’s chosen side, their stake is doubled and returned to their wallet. If not, the stake is forfeited.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- #### Responsive UI/UX: 
+The game features a clean, modern interface that ensures usability across various devices and screen sizes.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- #### Testing and Validation: 
+The platform has been rigorously tested to ensure functionality and reliability, with all interactions being verifiable on blockchain explorers like Etherscan.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Technologies Used
+
+
+- ### Frontend : 
+React.js with TypeScript for robust and scalable application development.
+
+- ### Styling:
+Material-UI (MUI) for modern, responsive designs and user interface components.
+
+- ### Blockchain: 
+Ethereum smart contracts, facilitated through interactions on the Ethereum testnet.
+
+- ### Hosting: 
+The application is deployed on Vercel, ensuring high availability and low latency.
+
+- ### Wallet Connection: 
+MetaMask integration for Ethereum, allowing users to securely connect their wallets and interact with the game.

@@ -59,9 +59,6 @@ const StyledFormControl = styled(FormControl)(({ theme }) => ({
   "& .MuiSelect-select": {
     color: theme.palette.text.primary,
   },
-  "& .MuiInputLabel-root": {
-    color: theme.palette.text.primary,
-  },
   "& .MuiSvgIcon-root": {
     color: theme.palette.text.primary,
   },
