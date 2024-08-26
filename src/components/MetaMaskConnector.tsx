@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Button, Typography, Box } from "@mui/material";
+import { Button, Typography, Box, Link } from "@mui/material";
 import { styled } from "@mui/system";
 
 const MainContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
+  gap: theme.spacing(1),
   [theme.breakpoints.down("sm")]: {},
 }));
 
@@ -106,7 +107,18 @@ const MetaMaskConnector: React.FC<MetaMaskConnectorProps> = ({
         {isConnected ? "Disconnect Wallet" : "Connect Wallet"}
       </Btn>
       {!metamaskAvailable && (
-        <Text>Please install or unlock MetaMask to continue.</Text>
+        <Text>
+          Please install the{" "}
+          <Link
+            href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn"
+            target="_blank"
+            color="inherit"
+            sx={{ fontWeight: "bold" }}
+          >
+            MetaMask
+          </Link>{" "}
+          extension to continue.
+        </Text>
       )}
     </MainContainer>
   );

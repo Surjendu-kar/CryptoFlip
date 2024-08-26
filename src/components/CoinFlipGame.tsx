@@ -12,7 +12,7 @@ import {
 
 const StyledTextField = styled(TextField)(({ theme }) => ({
   "& label": {
-    color: "#e2e8f0", // Add this line to change the default label color
+    color: "#e2e8f0",
   },
   "& label.Mui-focused": {
     color: "#e2e8f0",
@@ -248,11 +248,6 @@ const CoinFlipGame: React.FC<CoinFlipGameProps> = () => {
       >
         Flip Coin
       </StyledButton>
-      {/* {result && (
-        <Typography variant="h6" sx={{ mt: 2 }}>
-          Result: {result.charAt(0).toUpperCase() + result.slice(1)}
-        </Typography>
-      )} */}
     </Box>
   );
 };

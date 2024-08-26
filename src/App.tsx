@@ -21,6 +21,7 @@ const MainContainer = styled(Box)<MainContainerProps>(
     backgroundSize: "cover",
     backgroundPosition: "center",
     color: "#e2e8f0",
+    gap: theme.spacing(3),
     [theme.breakpoints.down("lg")]: {},
     [theme.breakpoints.down("md")]: {},
     [theme.breakpoints.down("sm")]: {
@@ -36,7 +37,6 @@ const MetaMaskContainer = styled(Box)(({ theme }) => ({
   padding: "30px",
   borderRadius: "15px",
   backdropFilter: "blur(5px)",
-  // backgroundColor: "rgba(255, 255, 255, 0.15)",
   backgroundColor: "#1e293b",
 
   boxShadow: "0 10px 7px rgba(0,0,0,0.25)",
@@ -56,7 +56,6 @@ const CoinFlipContainer = styled(Box)(({ theme }) => ({
   padding: "20px",
   borderRadius: "15px",
   backdropFilter: "blur(5px)",
-  // backgroundColor: "rgba(255, 255, 255, 0.15)",
   backgroundColor: "#1e293b",
 
   boxShadow: "0 10px 7px rgba(0,0,0,0.25)",
@@ -78,12 +77,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <MainContainer
-      sx={{
-        gap: 5,
-      }}
-      hasAddress={!!walletAddress}
-    >
+    <MainContainer hasAddress={!!walletAddress}>
       <MetaMaskContainer>
         <Heading>{walletAddress ? "Connected" : "Connect to MetaMask"}</Heading>
         <MetaMaskConnector
