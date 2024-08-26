@@ -8,27 +8,36 @@ import {
   MenuItem,
   FormControl,
   styled,
+  Tooltip,
 } from "@mui/material";
+
+const StyledTypography = styled(Typography)(({ theme }) => ({
+  color: theme.palette.text.primary,
+}));
+
+const Heading = styled(StyledTypography)({
+  fontWeight: "bold",
+});
 
 const StyledTextField = styled(TextField)(({ theme }) => ({
   "& label": {
-    color: "#e2e8f0",
+    color: theme.palette.text.primary,
   },
   "& label.Mui-focused": {
-    color: "#e2e8f0",
+    color: theme.palette.text.primary,
   },
   "& .MuiOutlinedInput-root": {
     "& fieldset": {
-      borderColor: "#e2e8f0",
+      borderColor: theme.palette.text.primary,
     },
     "&:hover fieldset": {
-      borderColor: "#e2e8f0",
+      borderColor: theme.palette.text.primary,
     },
     "&.Mui-focused fieldset": {
-      borderColor: "#e2e8f0",
+      borderColor: theme.palette.text.primary,
     },
     "& input": {
-      color: "#e2e8f0",
+      color: theme.palette.text.primary,
     },
   },
   marginBottom: theme.spacing(2),
@@ -38,31 +47,34 @@ const StyledFormControl = styled(FormControl)(({ theme }) => ({
   marginBottom: theme.spacing(2),
   "& .MuiOutlinedInput-root": {
     "& fieldset": {
-      borderColor: "#e2e8f0",
+      borderColor: theme.palette.text.primary,
     },
     "&:hover fieldset": {
-      borderColor: "#e2e8f0",
+      borderColor: theme.palette.text.primary,
     },
     "&.Mui-focused fieldset": {
-      borderColor: "#e2e8f0",
+      borderColor: theme.palette.text.primary,
     },
   },
   "& .MuiSelect-select": {
-    color: "#e2e8f0",
+    color: theme.palette.text.primary,
   },
   "& .MuiInputLabel-root": {
-    color: "#e2e8f0",
+    color: theme.palette.text.primary,
+  },
+  "& .MuiSvgIcon-root": {
+    color: theme.palette.text.primary,
   },
 }));
 
 const StyledButton = styled(Button)(({ theme }) => ({
   backgroundColor: "#8197ff",
-  color: "#e2e8f0",
+  color: theme.palette.text.primary,
   "&:hover": {
     backgroundColor: "#a5b4fc",
   },
   "&:disabled": {
-    color: "#e2e8f0",
+    color: theme.palette.text.primary,
     opacity: 0.5,
     background: "#121725",
   },
@@ -72,14 +84,9 @@ const StyledButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-const StyledTypography = styled(Typography)({
-  color: "#e2e8f0",
-  // fontWeight: 550,
-});
-
-const StyledCoin = styled("div")(() => ({
-  width: "100px",
-  height: "100px",
+const StyledCoin = styled("div")(({ theme }) => ({
+  width: theme.spacing(10),
+  height: theme.spacing(10),
   transformStyle: "preserve-3d",
   cursor: "pointer",
   transition: "transform 0.5s",
@@ -115,7 +122,7 @@ const StyledCoin = styled("div")(() => ({
   },
 }));
 
-const CoinFace = styled("div")({
+const CoinFace = styled("div")(({ theme }) => ({
   position: "absolute",
   width: "100%",
   height: "100%",
@@ -125,10 +132,10 @@ const CoinFace = styled("div")({
   borderRadius: "50%",
   WebkitBackfaceVisibility: "hidden",
   backfaceVisibility: "hidden",
-  padding: "12px",
-});
+  padding: theme.spacing(1.2),
+}));
 
-const CoinInner = styled("div")({
+const CoinInner = styled("div")(({ theme }) => ({
   width: "100%",
   height: "100%",
   border: "2px dotted #fff",
@@ -136,9 +143,9 @@ const CoinInner = styled("div")({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  fontSize: "20px",
+  fontSize: theme.spacing(2),
   textTransform: "uppercase",
-});
+}));
 
 const CoinFaceFront = styled(CoinFace)({
   background: "#d31c92",
@@ -173,6 +180,7 @@ const CoinFlipGame: React.FC<CoinFlipGameProps> = () => {
       setResult(flipResult);
       setIsFlipping(false);
       setFlipAnimation("");
+      setBetAmount("");
 
       setGameBalance((prevBalance) => {
         if (flipResult === selectedSide) {
@@ -191,9 +199,9 @@ const CoinFlipGame: React.FC<CoinFlipGameProps> = () => {
 
   return (
     <Box sx={{ mt: 4, textAlign: "center" }}>
-      <StyledTypography variant="h5" gutterBottom>
+      <Heading variant="h5" gutterBottom>
         Coin Flip Game
-      </StyledTypography>
+      </Heading>
       <Box sx={{ mb: 2 }}>
         <StyledTypography variant="body1">
           Game Balance: {gameBalance} ETH
@@ -235,19 +243,43 @@ const CoinFlipGame: React.FC<CoinFlipGameProps> = () => {
           </CoinFaceBack>
         </StyledCoin>
       </Box>
-      <StyledButton
-        variant="contained"
-        onClick={handleFlip}
-        disabled={
-          isFlipping ||
-          !gameBalance ||
-          betAmount === "" ||
-          parseFloat(betAmount) <= 0 ||
-          parseFloat(betAmount) > parseFloat(gameBalance)
+
+      <Tooltip
+        title={
+          isFlipping
+            ? "Waiting for the current flip to complete"
+            : !gameBalance
+            ? "No balance available"
+            : betAmount === "" || parseFloat(betAmount) <= 0
+            ? "Enter a valid bet amount"
+            : parseFloat(betAmount) > parseFloat(gameBalance) &&
+              "Bet amount exceeds available balance"
+        }
+        disableHoverListener={
+          !isFlipping &&
+          !!gameBalance &&
+          betAmount !== "" &&
+          parseFloat(betAmount) > 0 &&
+          parseFloat(betAmount) <= parseFloat(gameBalance)
         }
       >
-        Flip Coin
-      </StyledButton>
+        <span>
+          <StyledButton
+            variant="contained"
+            onClick={handleFlip}
+            disableElevation
+            disabled={
+              isFlipping ||
+              !gameBalance ||
+              betAmount === "" ||
+              parseFloat(betAmount) <= 0 ||
+              parseFloat(betAmount) > parseFloat(gameBalance)
+            }
+          >
+            Flip Coin
+          </StyledButton>
+        </span>
+      </Tooltip>
     </Box>
   );
 };

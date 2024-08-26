@@ -1,38 +1,38 @@
 import React, { useState, useEffect } from "react";
-import { Button, Typography, Box, Link } from "@mui/material";
+import { Button, Typography, Link, Stack } from "@mui/material";
 import { styled } from "@mui/system";
 
-const MainContainer = styled(Box)(({ theme }) => ({
-  display: "flex",
-  flexDirection: "column",
+const MainContainer = styled(Stack)(({ theme }) => ({
   alignItems: "center",
   gap: theme.spacing(1),
-  [theme.breakpoints.down("sm")]: {},
 }));
 
 const Text = styled(Typography)(({ theme }) => ({
-  fontSize: "0.875rem",
+  fontSize: theme.spacing(1.4),
   color: "red",
   [theme.breakpoints.down("sm")]: {
-    fontSize: "0.75rem",
+    fontSize: theme.spacing(1.2),
   },
 }));
 
 const Btn = styled(Button)(({ theme }) => ({
-  fontSize: "0.8rem",
+  fontSize: theme.spacing(1.4),
   backgroundColor: "#8197ff",
-  color: "#e2e8f0",
+  color: theme.palette.text.primary,
+
   "&:disabled": {
-    color: "#e2e8f0",
+    color: theme.palette.text.primary,
     opacity: 0.5,
     background: "#121725",
   },
+
   "&:hover": {
     backgroundColor: "#a5b4fc",
   },
+
   [theme.breakpoints.down("sm")]: {
-    fontSize: "0.6rem",
-    padding: "4px 10px",
+    fontSize: theme.spacing(0.95),
+    padding: theme.spacing(0.4, 1.0),
   },
 }));
 
@@ -103,6 +103,7 @@ const MetaMaskConnector: React.FC<MetaMaskConnectorProps> = ({
         variant="contained"
         onClick={connectWalletHandler}
         disabled={!metamaskAvailable}
+        disableElevation
       >
         {isConnected ? "Disconnect Wallet" : "Connect Wallet"}
       </Btn>

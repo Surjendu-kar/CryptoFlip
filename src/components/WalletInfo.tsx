@@ -4,15 +4,15 @@ import { Typography, Box, CircularProgress } from "@mui/material";
 import { styled } from "@mui/system";
 
 const MainContainer = styled(Box)(({ theme }) => ({
-  marginTop: "2rem",
+  marginTop: theme.spacing(3.2),
   textAlign: "center",
-  [theme.breakpoints.down("sm")]: { marginTop: "1rem" },
+  [theme.breakpoints.down("sm")]: { marginTop: theme.spacing(1.6) },
 }));
 const Text = styled(Typography)(({ theme }) => ({
-  fontSize: "1rem",
+  fontSize: theme.spacing(1.6),
   fontWeight: "bold",
   [theme.breakpoints.down("sm")]: {
-    fontSize: "0.7rem",
+    fontSize: theme.spacing(1.1),
   },
 }));
 

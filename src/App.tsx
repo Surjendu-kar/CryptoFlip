@@ -1,67 +1,65 @@
 import React, { useState } from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Stack, styled, Typography } from "@mui/material";
 import MetaMaskConnector from "./components/MetaMaskConnector";
 import WalletInfo from "./components/WalletInfo";
 import CoinFlipGame from "./components/CoinFlipGame";
-import { styled } from "@mui/system";
 import { BoxProps } from "@mui/material/Box";
 
 interface MainContainerProps extends BoxProps {
-  hasAddress: boolean;
+  isConnected: boolean;
 }
 
 const MainContainer = styled(Box)<MainContainerProps>(
-  ({ theme, hasAddress }) => ({
+  ({ theme, isConnected }) => ({
     minHeight: "100vh",
+
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    padding: hasAddress ? "0 20rem" : "0 30rem",
-    background: "#121725",
+
+    padding: isConnected ? theme.spacing(0, 32) : theme.spacing(0, 48),
+    background: theme.palette.background.default,
     backgroundSize: "cover",
     backgroundPosition: "center",
-    color: "#e2e8f0",
     gap: theme.spacing(3),
-    [theme.breakpoints.down("lg")]: {},
-    [theme.breakpoints.down("md")]: {},
+
     [theme.breakpoints.down("sm")]: {
-      flexDirection: hasAddress ? "column" : "row",
-      padding: hasAddress ? "0" : "2rem",
+      flexDirection: isConnected ? "column" : "row",
+      padding: isConnected ? theme.spacing(0) : theme.spacing(3.2),
     },
   })
 );
 
-const MetaMaskContainer = styled(Box)(({ theme }) => ({
+const MetaMaskContainer = styled(Stack)(({ theme }) => ({
   flex: 1,
   textAlign: "center",
-  padding: "30px",
-  borderRadius: "15px",
-  backdropFilter: "blur(5px)",
-  backgroundColor: "#1e293b",
-
+  padding: theme.spacing(3),
+  borderRadius: theme.spacing(1.5),
+  backdropFilter: `blur(${theme.spacing(0.5)})`,
+  background: theme.palette.secondary.main,
+  gap: theme.spacing(1),
   boxShadow: "0 10px 7px rgba(0,0,0,0.25)",
-  [theme.breakpoints.down("sm")]: { marginTop: "1rem", padding: "20px" },
-}));
 
-const Heading = styled(Typography)(({ theme }) => ({
-  fontSize: "2rem",
   [theme.breakpoints.down("sm")]: {
-    fontSize: "1.5rem",
+    marginTop: theme.spacing(1.6),
+    padding: theme.spacing(2),
   },
 }));
 
-const CoinFlipContainer = styled(Box)(({ theme }) => ({
-  flex: 1,
-  textAlign: "center",
-  padding: "20px",
-  borderRadius: "15px",
-  backdropFilter: "blur(5px)",
-  backgroundColor: "#1e293b",
+const Heading = styled(Typography)(({ theme }) => ({
+  fontSize: theme.spacing(3.2),
 
-  boxShadow: "0 10px 7px rgba(0,0,0,0.25)",
   [theme.breakpoints.down("sm")]: {
-    padding: "20px",
-    marginBottom: "1rem",
+    fontSize: theme.spacing(2.4),
+  },
+}));
+
+const CoinFlipContainer = styled(MetaMaskContainer)(({ theme }) => ({
+  padding: theme.spacing(2),
+
+  [theme.breakpoints.down("sm")]: {
+    padding: theme.spacing(2),
+    marginBottom: theme.spacing(1.6),
   },
 }));
 
@@ -77,7 +75,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <MainContainer hasAddress={!!walletAddress}>
+    <MainContainer isConnected={!!walletAddress}>
       <MetaMaskContainer>
         <Heading>{walletAddress ? "Connected" : "Connect to MetaMask"}</Heading>
         <MetaMaskConnector
