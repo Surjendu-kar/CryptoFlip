@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Button, Typography, Link, Stack } from "@mui/material";
+import {
+  Button,
+  Typography,
+  Link,
+  Stack,
+  CircularProgress,
+} from "@mui/material";
 import { styled } from "@mui/system";
 
 const MainContainer = styled(Stack)(({ theme }) => ({
@@ -59,6 +65,7 @@ const MetaMaskConnector: React.FC<MetaMaskConnectorProps> = ({
   const [metamaskAvailable, setMetamaskAvailable] = useState<boolean>(false);
   const storedAddress = localStorage.getItem("walletAddress");
   const [isConnected, setIsConnected] = useState<boolean>(!!storedAddress);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     setIsConnected(!!storedAddress);
@@ -97,10 +104,19 @@ const MetaMaskConnector: React.FC<MetaMaskConnectorProps> = ({
         setMetamaskAvailable(true);
         clearInterval(checkMetaMask);
       }
+      setIsLoading(false);
     }, 100);
 
     return () => clearInterval(checkMetaMask);
   }, []);
+
+  if (isLoading) {
+    return (
+      <MainContainer>
+        <CircularProgress />
+      </MainContainer>
+    );
+  }
 
   return (
     <MainContainer>
