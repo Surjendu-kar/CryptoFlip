@@ -57,7 +57,12 @@ const MetaMaskConnector: React.FC<MetaMaskConnectorProps> = ({
   onDisconnect,
 }) => {
   const [metamaskAvailable, setMetamaskAvailable] = useState<boolean>(false);
-  const [isConnected, setIsConnected] = useState<boolean>(false);
+  const storedAddress = localStorage.getItem("walletAddress");
+  const [isConnected, setIsConnected] = useState<boolean>(!!storedAddress);
+
+  useEffect(() => {
+    setIsConnected(!!storedAddress);
+  }, [storedAddress]);
 
   const connectWalletHandler = async (): Promise<void> => {
     if (!isConnected) {

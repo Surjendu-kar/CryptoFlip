@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Stack, styled, Typography } from "@mui/material";
 import MetaMaskConnector from "./components/MetaMaskConnector";
 import WalletInfo from "./components/WalletInfo";
@@ -66,12 +66,24 @@ const CoinFlipContainer = styled(MetaMaskContainer)(({ theme }) => ({
 const App: React.FC = () => {
   const [walletAddress, setWalletAddress] = useState<string>("");
 
+  useEffect(() => {
+    const storedAddress = localStorage.getItem("walletAddress");
+    if (storedAddress) {
+      setWalletAddress(storedAddress);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("walletAddress", walletAddress);
+  }, [walletAddress]);
+
   const handleConnect = (address: string) => {
     setWalletAddress(address);
   };
 
   const handleDisconnect = () => {
     setWalletAddress("");
+    localStorage.removeItem("walletAddress");
   };
 
   return (
