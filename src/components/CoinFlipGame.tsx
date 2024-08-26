@@ -14,10 +14,14 @@ import {
 const StyledTextField = styled(TextField)(({ theme }) => ({
   "& label.Mui-focused": {
     color: "black",
+    fontWeight: 550,
   },
   "& .MuiOutlinedInput-root": {
     "&.Mui-focused fieldset": {
       borderColor: "black",
+    },
+    "& input": {
+      fontWeight: 550,
     },
   },
   marginBottom: theme.spacing(2),
@@ -30,11 +34,18 @@ const StyledFormControl = styled(FormControl)(({ theme }) => ({
       borderColor: "black",
     },
   },
+  "& .MuiSelect-select": {
+    fontWeight: 550,
+  },
+  "& .MuiInputLabel-root": {
+    fontWeight: 550,
+  },
 }));
 
 const StyledButton = styled(Button)(({ theme }) => ({
   backgroundColor: "#8D493A",
   color: "white",
+  fontWeight: 550,
   "&:hover": {
     backgroundColor: "#753d31",
   },
@@ -43,6 +54,10 @@ const StyledButton = styled(Button)(({ theme }) => ({
     padding: "4px 10px",
   },
 }));
+
+const StyledTypography = styled(Typography)({
+  fontWeight: 550,
+});
 
 interface CoinFlipGameProps {
   address: string;
@@ -82,15 +97,17 @@ const CoinFlipGame: React.FC<CoinFlipGameProps> = () => {
 
   return (
     <Box sx={{ mt: 4, textAlign: "center" }}>
-      <Typography variant="h5" gutterBottom>
+      <StyledTypography variant="h5" gutterBottom>
         Coin Flip Game
-      </Typography>
+      </StyledTypography>
       <Box sx={{ mb: 2 }}>
-        <Typography variant="body1">Game Balance: {gameBalance} ETH</Typography>
+        <StyledTypography variant="body1">
+          Game Balance: {gameBalance} ETH
+        </StyledTypography>
         {parseFloat(gameBalance) > 0 && (
-          <Typography variant="body2" color="textSecondary">
+          <StyledTypography variant="body2" color="textSecondary">
             (Includes {DEFAULT_BALANCE} ETH free balance)
-          </Typography>
+          </StyledTypography>
         )}
       </Box>
       <StyledTextField
