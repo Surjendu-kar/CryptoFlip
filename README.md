@@ -3,7 +3,7 @@
 
 ## Overview
 
-This project showcases a blockchain-based coinflip game where users can connect their cryptocurrency wallets, bet tokens, and potentially double their stake based on the outcome of a coin toss. The application is designed to interact with different blockchains, providing a user-friendly experience to engage with decentralized technologies without extensive prior knowledge.
+This project features a blockchain-based coinflip game where users can connect their MetaMask wallets to bet Ethereum tokens. Participants have the chance to double their stake based on the outcome of a coin toss. The application is designed to provide a straightforward and user-friendly experience, enabling users to interact with decentralized technology on the Ethereum blockchain without needing extensive prior knowledge.
 
 ## Features
 
