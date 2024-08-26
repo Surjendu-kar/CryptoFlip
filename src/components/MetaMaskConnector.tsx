@@ -21,6 +21,11 @@ const Btn = styled(Button)(({ theme }) => ({
   fontSize: "0.8rem",
   backgroundColor: "#8197ff",
   color: "#e2e8f0",
+  "&:disabled": {
+    color: "#e2e8f0",
+    opacity: 0.5,
+    background: "#121725",
+  },
   "&:hover": {
     backgroundColor: "#a5b4fc",
   },

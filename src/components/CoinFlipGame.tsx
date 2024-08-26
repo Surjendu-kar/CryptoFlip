@@ -38,10 +38,10 @@ const StyledFormControl = styled(FormControl)(({ theme }) => ({
   marginBottom: theme.spacing(2),
   "& .MuiOutlinedInput-root": {
     "& fieldset": {
-      borderColor: "#e2e8f0", // Add this line to change the default border color
+      borderColor: "#e2e8f0",
     },
     "&:hover fieldset": {
-      borderColor: "#e2e8f0", // Add this line to change the hover border color
+      borderColor: "#e2e8f0",
     },
     "&.Mui-focused fieldset": {
       borderColor: "#e2e8f0",
@@ -51,7 +51,7 @@ const StyledFormControl = styled(FormControl)(({ theme }) => ({
     color: "#e2e8f0",
   },
   "& .MuiInputLabel-root": {
-    color: "#e2e8f0", // Add this line to change the label color
+    color: "#e2e8f0",
   },
 }));
 
@@ -62,8 +62,8 @@ const StyledButton = styled(Button)(({ theme }) => ({
     backgroundColor: "#a5b4fc",
   },
   "&:disabled": {
-    color: "#e2e8f0", // This sets the text color to white when disabled
-    opacity: 0.5, // This adds some transparency to indicate it's disabled
+    color: "#e2e8f0",
+    opacity: 0.5,
     background: "#121725",
   },
   [theme.breakpoints.down("sm")]: {
