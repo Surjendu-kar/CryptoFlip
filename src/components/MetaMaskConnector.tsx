@@ -19,10 +19,10 @@ const Text = styled(Typography)(({ theme }) => ({
 
 const Btn = styled(Button)(({ theme }) => ({
   fontSize: "0.8rem",
-  backgroundColor: "#8D493A",
-  color: "white",
+  backgroundColor: "#8197ff",
+  color: "#e2e8f0",
   "&:hover": {
-    backgroundColor: "#753d31",
+    backgroundColor: "#a5b4fc",
   },
   [theme.breakpoints.down("sm")]: {
     fontSize: "0.6rem",

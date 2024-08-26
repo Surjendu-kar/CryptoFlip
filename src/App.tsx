@@ -3,7 +3,6 @@ import { Box, Typography } from "@mui/material";
 import MetaMaskConnector from "./components/MetaMaskConnector";
 import WalletInfo from "./components/WalletInfo";
 import CoinFlipGame from "./components/CoinFlipGame";
-import bgImg from "../src/assets/bgImg.jpg";
 import { styled } from "@mui/system";
 import { BoxProps } from "@mui/material/Box";
 
@@ -18,9 +17,10 @@ const MainContainer = styled(Box)<MainContainerProps>(
     alignItems: "center",
     justifyContent: "center",
     padding: hasAddress ? "0 20rem" : "0 30rem",
+    background: "#121725",
     backgroundSize: "cover",
     backgroundPosition: "center",
-    // color: "#ffffff",
+    color: "#e2e8f0",
     [theme.breakpoints.down("lg")]: {},
     [theme.breakpoints.down("md")]: {},
     [theme.breakpoints.down("sm")]: {
@@ -36,7 +36,9 @@ const MetaMaskContainer = styled(Box)(({ theme }) => ({
   padding: "30px",
   borderRadius: "15px",
   backdropFilter: "blur(5px)",
-  backgroundColor: "rgba(255, 255, 255, 0.15)",
+  // backgroundColor: "rgba(255, 255, 255, 0.15)",
+  backgroundColor: "#1e293b",
+
   boxShadow: "0 10px 7px rgba(0,0,0,0.25)",
   [theme.breakpoints.down("sm")]: { marginTop: "1rem", padding: "20px" },
 }));
@@ -54,7 +56,9 @@ const CoinFlipContainer = styled(Box)(({ theme }) => ({
   padding: "20px",
   borderRadius: "15px",
   backdropFilter: "blur(5px)",
-  backgroundColor: "rgba(255, 255, 255, 0.15)",
+  // backgroundColor: "rgba(255, 255, 255, 0.15)",
+  backgroundColor: "#1e293b",
+
   boxShadow: "0 10px 7px rgba(0,0,0,0.25)",
   [theme.breakpoints.down("sm")]: {
     padding: "20px",
@@ -76,7 +80,6 @@ const App: React.FC = () => {
   return (
     <MainContainer
       sx={{
-        backgroundImage: `url(${bgImg})`,
         gap: 5,
       }}
       hasAddress={!!walletAddress}
